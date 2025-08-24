@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from repo root
 app.use(express.static(path.join(__dirname)));
 
+// Health check
+app.get("/health", (_req, res) => res.status(200).send("OK"));
+
 // Always return index.html for any route
 app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
